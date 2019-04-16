@@ -1,12 +1,64 @@
+<title>User Index</title>
 <div class="row">
     <div class="col-6 offset-3">
         <h1 class="text-center">User Index</h1>
         
         <% if @users %>
-            <h3>Id, User Email, Name</h3>
+            <h3> Id, Email</h3>
+            <h4> Name </h4>
+            <hr/>
             <%  @users.each do |u| %>
-               <h4> <%= u.id %> <%= u.role.title %> <%= u.email %>  <%= u.last_name %>, <%= u.first_name %></h4>
+               <h4> <%= u.id %> 
+                   <%= u.role.title %>
+                    <%= u.email %>
+                </h4>
+                <h5>
+                    <%= u.first_name %>
+                    <%= u.last_name %>
+                    <button id="<%=u.id%>" name="showuser" class="btn btn-info btn-sm">
+                        Profile
+                    </button>
+                    <button id="<%=u.id%>" name="deleteuser" class="btn btn-danger btn-sm">
+                        Delete
+                    </button>
+                </h5> 
             <% end %>    
         <%end%>
+        
+        <div id="userlist"></div>
     </div>
 </div>
+
+
+
+<script>
+    document.querySelectorAll("button[name='deleteuser']")
+    .forEach(link => link.addEventListener("click",
+        (ev) => {
+            if(!confirm("Sure?")){
+              console.log("Cancel");
+            }else{
+              console.log("Delete");
+               deleteFromAPI(`/users/${ev.target.id}/`, {"zz":-1}).then((res)=>{
+                  if(res["deleted"]){
+                      console.log("succesfully deleted");
+                      location.reload();
+                      
+                  }else{
+                      console.log("Not deleted");
+                      alert(res['status']);
+                  }
+              });
+            }
+        })
+    );
+
+    document.querySelectorAll("button[name='showuser']")
+      .forEach(link => link.addEventListener("click",
+          (ev) => {
+              document.location = `/users/${ev.target.id}/`;        
+          
+          })
+      );
+      
+</script>

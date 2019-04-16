@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
   
   # create current_user instance variable with current session user_id
   def current_user
+    begin
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    rescue StandardError => e
+      print e
+      @current_user = nil
+    end
   end  
   
   # helper method for current user available in views

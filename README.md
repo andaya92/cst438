@@ -1,5 +1,3 @@
-https://git.heroku.com/cst438-gymapp.git
-
 # CST 348 Project Proposal
 ## Christopher Andaya, Austin Walker
 # Gym Membership System
@@ -23,3 +21,5 @@ The gym membership system is a CSUMB student project for a  gym membership syste
 #Database access via console
 Login to Postgres from ec2-user
 psql postgres
+sudo service postgresql start
+sudo service postgresql stop
