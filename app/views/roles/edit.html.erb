@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-6 offset-3">
+        <h1 class="text-center">Update Role</h1>
+        
+        <%= form_for @role do |f| %>
+          <% if @role.errors.any? %>
+            <div class="error_messages">
+                <h2>Form is invalid</h2>
+                <ul>
+                    <% @role.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end  %>
+                </ul>
+            </div>
+           <% end %>
+           
+           <div class="row">
+               <div class="col-6 self-align-start">
+                    <%= f.label :title %><br/>
+               </div>
+               <div class="col-6 self-align-end">
+                    <%= f.text_field :title , class: "form-control" %>
+               </div>
+           </div>
+           
+           
+           <div class="actions text-center"><%= f.submit "Update" , class: "form-control"%></div>
+        <% end %>        
+    </div>
+</div>

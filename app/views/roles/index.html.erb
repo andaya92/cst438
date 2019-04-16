@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-6 offset-3">
+        <h1 class="text-center">User Index</h1>
+        
+        <% if @roles %>
+            <h3>Id, Title</h3>
+            <%  @roles.each do |u| %>
+               <h4> <%= u.id %> <%= u.title %>  </h4>
+            <% end %>    
+        <%end%>
+    </div>
+</div>

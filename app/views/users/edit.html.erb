@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-6 offset-3">
+        <h1 class="text-center">Update User Profile</h1>
+        
+        <%= form_for @user do |f| %>
+          <% if @user.errors.any? %>
+            <div class="error_messages">
+                <h2>Form is invalid</h2>
+                <ul>
+                    <% @user.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end  %>
+                </ul>
+            </div>
+           <% end %>
+           
+           <div class="row">
+               <div class="col-6 self-align-start">
+                    <%= f.label :email %><br/>
+               </div>
+               <div class="col-6 self-align-end">
+                    <%= f.text_field :email , class: "form-control" %>
+               </div>
+           </div>
+           
+           <div class="row">
+               <div class="col-6 self-align-start">
+                    <%= f.label :first_name %><br/>
+               </div>
+               <div class="col-6 self-align-end">
+                    <%= f.text_field :first_name , class: "form-control" %>
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-6 self-align-start">
+                    <%= f.label :last_name %><br/>
+               </div>
+               <div class="col-6 self-align-end">
+                    <%= f.text_field  :last_name , class: "form-control" %>
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-6 self-align-start">
+                    <%= f.label :role_id %><br/>
+               </div>
+               <div class="col-6 self-align-end">
+                    <%= f.select :role_id , options_for_select(@roles.map{|r| [r.title, r.id]}, selected=@user.role_id), {}, {:class => "form-control"} %>
+               </div>
+           </div>
+           <div class="actions text-center"><%= f.submit "Update" , class: "form-control"%></div>
+        <% end %>        
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-6 offset-3">
+        <h1 class="text-center">User Profile</h1>
+        
+        <% if @role %>
+            <h3>Role Info</h3>
+            <h5><%= @role.title %></h5>
+            
+        <%end%>
+    </div>
+</div>
