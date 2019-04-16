@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
     begin
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
     rescue StandardError => e
-      print e
+      puts e
+      puts "Error finding current logged in user"
       @current_user = nil
     end
   end  
