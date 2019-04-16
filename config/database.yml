@@ -26,3 +26,6 @@ test:
 production:
   <<: *default
   database: cst438_production
+  username: <%= ENV['user'] %>
+  password: <%= ENV['password'] %>
+  host: <%= ENV['host'] %>
