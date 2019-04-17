@@ -11,6 +11,8 @@ class SessionController < ApplicationController
      puts @user.email
      if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
+      puts "Stored user in session"
+      puts @user.id
       redirect_to "/"
      else
       render "new"

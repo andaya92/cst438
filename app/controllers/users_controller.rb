@@ -45,10 +45,15 @@ class UsersController < ApplicationController
         
         # Require auth
         if is_admin?
-            @del = @user.destroy
-            puts "IS deleted?>?>"
-            puts @del.destroyed?
-            render json: {"deleted" => @del.destroyed?, "status": "Deleted user %d"%[request['id']] }.to_json
+            # logged in user cannot deleted themself
+            if current_user.id != @user.id
+                @del = @user.destroy
+                puts "IS deleted?>?>"
+                puts @del.destroyed?
+                render json: {"deleted" => @del.destroyed?, "status": "Deleted user %d"%[request['id']] }.to_json
+            else
+                render json: {"deleted" => false, "status": "Cannot delete self while logged in..." }.to_json
+            end
         else
             render json: {"deleted" => false, "status": "Admin login required" }.to_json
         end

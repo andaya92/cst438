@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   
   # create current_user instance variable with current session user_id
   def current_user
+    @current_user = nil
     begin
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
     rescue StandardError => e
@@ -12,17 +13,20 @@ class ApplicationController < ActionController::Base
       puts "Error finding current logged in user"
       @current_user = nil
     end
+    @current_user
   end  
   
   # helper method for current user available in views
   helper_method :current_user
   
   def is_admin?
-    !current_user.nil? and current_user.role_id == 3 
+    @admin_role = Role.find_by title: "Admin"
+    !current_user.nil? and current_user.role_id == @admin_role.id
   end  
   
   def is_member?
-    !current_user.nil? and current_user.role_id == 4
+    @member_role = Role.find_by title: "Member"
+    !current_user.nil? and current_user.role_id == @member_role.id
   end  
   
   helper_method :is_admin?
