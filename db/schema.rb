@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190416024833) do
+ActiveRecord::Schema.define(version: 20190417072155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checkins", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.date     "day",        default: '2019-04-17'
+    t.index ["day", "user_id"], name: "index_checkins_on_day_and_user_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_checkins_on_user_id", using: :btree
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "title"
@@ -30,8 +39,21 @@ ActiveRecord::Schema.define(version: 20190416024833) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "role_id"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["role_id"], name: "index_users_on_role_id", using: :btree
   end
 
+  create_table "workouts", force: :cascade do |t|
+    t.date     "day"
+    t.string   "title"
+    t.text     "workout"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day", "user_id"], name: "index_workouts_on_day_and_user_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_workouts_on_user_id", using: :btree
+  end
+
   add_foreign_key "users", "roles"
+  add_foreign_key "workouts", "users"
 end

@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+    # API for mobile app
+    def indexAPI
+        render json: {"users"=>index}
+    end
+    def showAPI
+        render json: {"user"=>show}
+    end
+    
     # List of users
     def index
         @users = User.all
@@ -14,11 +22,14 @@ class UsersController < ApplicationController
     def create
         @roles = Role.all
         @user = User.new(user_params)
-        if @user.save
-            redirect_to root_url, notice: "Thank you for signing up!"
-        else 
+        begin
+            @user.save
+            redirect_to root_url, notice: "Thank you for signing up!"   
+        rescue Exception => e
+            puts e
+            @error = "Email already taken"
             render "new"
-        end  
+        end
     end 
     
     #Shows single user
@@ -50,12 +61,12 @@ class UsersController < ApplicationController
                 @del = @user.destroy
                 puts "IS deleted?>?>"
                 puts @del.destroyed?
-                render json: {"deleted" => @del.destroyed?, "status": "Deleted user %d"%[request['id']] }.to_json
+                render json: {"deleted" => @del.destroyed?, "status"=> "Deleted user %d"%[request['id']] }.to_json
             else
-                render json: {"deleted" => false, "status": "Cannot delete self while logged in..." }.to_json
+                render json: {"deleted" => false, "status"=> "Cannot delete self while logged in..." }.to_json
             end
         else
-            render json: {"deleted" => false, "status": "Admin login required" }.to_json
+            render json: {"deleted" => false, "status"=> "Admin login required" }.to_json
         end
     end
     

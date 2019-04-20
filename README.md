@@ -29,6 +29,8 @@ sudo service postgresql stop
 
 # Makes assets/js files available
 bundle exec rake assets:precompile
+
+
 # Deploy
 git add .
 git commit -am "Changed"

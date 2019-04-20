@@ -1,0 +1,29 @@
+<title>Checkin Index</title>
+<div class="row">
+    <div class="col-6 offset-3">
+        <h1 class="text-center">Checin Index</h1>
+        
+        <% if @checkins %>
+        <div class="table-responsive">
+            <table class="table text-center table-bordered table-sm">
+            <thead class="thead-dark">
+                <tr>
+                <th>Date</th>
+                <th>User</th>
+                </tr>    
+            </thead>
+            <tbody class="table-hover">
+                <%  @checkins.each do |ch| %>
+                    <tr>
+                    <td><%= ch.day %></td>
+                    <td><%= ch.user.email %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+            </table>
+        </div>
+        <%end%>
+        
+        <div id="userlist"></div>
+    </div>
+</div>

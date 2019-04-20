@@ -1,5 +1,18 @@
 class SessionController < ApplicationController
     
+    def auth_member
+        begin
+            @user = User.find_by(email: params[:email])
+            @authenticated = @user.authenticate(params[:password])
+            puts "Auth?: %s"%[@authenticated]
+            render json: {"authenticated"=> @authenticated != false}
+        rescue Exception => e
+            puts e
+            render json: {"authenticated"=>false}
+        end
+    
+    end
+    
     def new
         @user = User.new
     end
