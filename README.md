@@ -7,16 +7,17 @@ The gym membership system is a CSUMB student project for a  gym membership syste
 - Pivotal Tracker: https://www.pivotaltracker.com/n/projects/2317969
 - Github: https://github.com/andaya92/cst438
 ## Requirements
+- Web application
+- Mobile support
 - Database Records 
-- User Sign-ups
-- User Login and Authentication
-- Users can view other Users Account
-- Users can view and edit Billing Information
-- Users can keep records of calories (intake/burned)
-- Users have access to Dynamic Calendar that they can fill
-- Users will not be able to edit other Users (Admin Rights)
-- Web Application
-- Mobile Support
+- User account registration
+- User login and authentication
+- Users can view other users accounts
+- Users can view and edit billing information
+- User can view and log their own workouts on the mobile application
+- Users can check themselves into the web app and view other users that have checked in
+- Admins can delete user accounts 
+
 
 
 # Database access via console
