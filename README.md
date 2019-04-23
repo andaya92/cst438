@@ -6,6 +6,7 @@
 The gym membership system is a CSUMB student project for a  gym membership system will include a website where a user will be able to log-in and view their membership information. 
 - Pivotal Tracker: https://www.pivotaltracker.com/n/projects/2317969
 - Github: https://github.com/andaya92/cst438
+- Mobile App: https://github.com/andaya92/cst438mobile
 ## Requirements
 - Web application
 - Mobile support
