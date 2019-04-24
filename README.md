@@ -14,7 +14,7 @@ The gym membership system is a CSUMB student project for a  gym membership syste
 - User account registration
 - User login and authentication
 - Users can view other users accounts
-- Users can view and edit billing information
+- Users can view and purchase products from the gym store
 - User can view and log their own workouts on the mobile application
 - Users can check themselves into the web app and view other users that have checked in
 - Admins can delete user accounts 
